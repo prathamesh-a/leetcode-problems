@@ -8,7 +8,6 @@ class Solution {
             min = Math.min(salary[i], min);
             max = Math.max(salary[i], max);
         }
-        System.out.println(min +" "+max);
         return (total-(min+max))/(salary.length-2);
     }
 }
