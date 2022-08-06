@@ -20,13 +20,11 @@ class Solution {
     
     public int getHeight(TreeNode root)
     {
-        if(root == null)
-        {
-            return 0;
-        }
+        if(root == null) return 0;
         
         int left = getHeight(root.left);
         int right = getHeight(root.right);
+        
         return 1 + Math.max(left, right);
     }
 }
