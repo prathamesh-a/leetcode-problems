@@ -1,27 +1,18 @@
 class Solution {
-    public int[][] merge(int[][] intervals) {
-        
-        Arrays.sort(intervals, Comparator.comparingDouble(o -> o[0]));
+    public static int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a,b)->Integer.compare(a[0],b[0]));
         
         ArrayList<int[]> list = new ArrayList<>();
-        
-        int low = intervals[0][0], high = intervals[0][1];
-
-        for(int[] arr : intervals) {
-
-            if (arr[0] <= high) {
-                high = Math.max(high, arr[1]);
-            }
-            else {
-                list.add(new int[]{low, high});
-                low = arr[0];
-                high = arr[1];
-            }
+        int[] pick = intervals[0];
+        for(var inter: intervals){
+            if(pick[1]>= inter[0])
+                pick[1] = (pick[1] > inter[1]) ? pick[1] : inter[1];
+            else{
+                list.add(pick);
+                pick = inter;}
         }
+        list.add(pick);
+        return list.toArray(new int[list.size()][]);
         
-        list.add(new int[]{low, high});
-         
-        return list.toArray(new int[0][]);
-
     }
 }
