@@ -20,11 +20,8 @@ class Solution {
         }
         
         list.add(new int[]{low, high});
-            
-        int[][] arr = new int[list.size()][];
-        arr = list.toArray(arr);
          
-        return arr;
+        return list.toArray(new int[0][]);
 
     }
 }
