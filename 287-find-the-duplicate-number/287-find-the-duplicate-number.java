@@ -8,12 +8,10 @@ class Solution {
         // return 0;
         
         int[] arr = new int[nums.length];
-        
         for (int i : nums){
             if (arr[i] == 0) arr[i] = i;
             else return i;
         }
-        
         return 0;
     }
 }
