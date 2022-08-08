@@ -7,15 +7,15 @@ class Solution {
         
         int low = intervals[0][0], high = intervals[0][1];
 
-        for(int i=1; i<intervals.length; i++) {
+        for(int[] arr : intervals) {
 
-            if (intervals[i][0] <= high) {
-                high = Math.max(high, intervals[i][1]);
+            if (arr[0] <= high) {
+                high = Math.max(high, arr[1]);
             }
             else {
                 list.add(new int[]{low, high});
-                low = intervals[i][0];
-                high = intervals[i][1];
+                low = arr[0];
+                high = arr[1];
             }
         }
         
