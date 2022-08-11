@@ -1,8 +1,8 @@
 class Solution {
     public int majorityElement(int[] nums) {
         
-        Arrays.sort(nums);
-        return nums[nums.length/2];
+        // Arrays.sort(nums);
+        // return nums[nums.length/2];
         
         
         // HashMap<Integer, Integer> map = new HashMap<>();
@@ -15,11 +15,17 @@ class Solution {
         // }
         // return nums[0];
         
-//         for(int i=0; i<nums.length-1; i++) {
-//             for(int j=i+1; j<nums.length; j++) {
-                
-//             }
-//         }
+        int count = 0;
+        int curr = 0;
+        
+        for(int i : nums) {
+            if (count == 0) curr = i;
+            if(i == curr) count++;
+            else count--;
+        }
+        
+        return curr;
+        
         
     }
 }
