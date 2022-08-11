@@ -21,21 +21,16 @@ class Solution {
         // return list;
         
         List<Integer> list = new ArrayList<>();
-        
-        if (nums.length < 3) {
-            for(int i : nums) if(!list.contains(i)) list.add(i);
-            return list;
-        }
-        
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int i : nums) {
             if (map.containsKey(i)) {
-                if((map.get(i)+1) > nums.length/3) {
-                    if(!list.contains(i))list.add(i);
-                } 
                 map.put(i, map.get(i)+1);
             }
             else map.put(i, 1);
+            
+            if(map.get(i) > nums.length/3) {
+                if(!list.contains(i))list.add(i);
+            } 
         }
         return list;
     }
