@@ -32,8 +32,16 @@ class Solution {
             if (map.containsKey(i)) map.put(i, map.get(i)+1);
             else map.put(i, 1);
         }
-        return Collections.max(map.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-        
+        //return Collections.max(map.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+        int max = 0;
+        int res = 0;
+        for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
+            if (max < entry.getValue()) {
+                max = entry.getValue();
+                res = entry.getKey();
+            }
+        }
+        return res;
         
     }
 }
