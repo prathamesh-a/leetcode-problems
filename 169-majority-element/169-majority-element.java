@@ -1,7 +1,6 @@
 class Solution {
     public int majorityElement(int[] nums) {
         Arrays.sort(nums);
-        //System.out.println(Arrays.toString(nums));
         int max = 0;
         int res = 0;
         int cur = nums[0];
@@ -9,6 +8,7 @@ class Solution {
         for(int i=1; i<nums.length; i++) {
             if (nums[i] == cur) {
                 f++;
+                if(f > nums.length/2) return cur;
             }
             else {
                 if(max < f) {
@@ -24,5 +24,7 @@ class Solution {
             res = cur;
         }
         return res;
+        
+        
     }
 }
