@@ -26,22 +26,28 @@ class Solution {
         // }
         // return res;
         
-        HashMap<Integer, Integer> map = new HashMap<>();
         
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i : nums) {
-            if (map.containsKey(i)) map.put(i, map.get(i)+1);
+            if (map.containsKey(i)) {
+                if((map.get(i)+1) > nums.length/2) return i; 
+                map.put(i, map.get(i)+1);
+            }
             else map.put(i, 1);
         }
-        //return Collections.max(map.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-        int max = 0;
-        int res = 0;
-        for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
-            if (max < entry.getValue()) {
-                max = entry.getValue();
-                res = entry.getKey();
-            }
-        }
-        return res;
+        return nums[0];
+        
+        // int max = 0;
+        // int res = 0;
+        // for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
+        //     if (max < entry.getValue()) {
+        //         max = entry.getValue();
+        //         res = entry.getKey();
+        //     }
+        // }
+        // return res;
+        
+        
         
     }
 }
