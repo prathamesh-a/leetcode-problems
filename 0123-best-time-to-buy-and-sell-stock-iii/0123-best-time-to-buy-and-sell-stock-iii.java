@@ -1,10 +1,30 @@
 class Solution {
     
     public int maxProfit(int[] prices) {
-        int[][] dp = new int[prices.length][5];
-        for(int[] a : dp) Arrays.fill(a, -1);
-        int res = fn(0, 4, prices, dp);
-        return res;
+        int[][] dp = new int[prices.length+1][5];
+        
+        for(int i=prices.length-1; i>=0; i--) {
+            for(int j=0; j<=4; j++) {
+                if (j == 0) continue;
+                if (j%2 == 0) {
+                    int b = dp[i+1][j-1] - prices[i];
+                    int skip = dp[i+1][j];
+                    dp[i][j] = Math.max(b, skip);
+                }
+                else {
+                    int sell = dp[i+1][j-1] + prices[i];
+                    int skip = dp[i+1][j];
+                    dp[i][j] = Math.max(sell, skip);
+                }
+            }
+        }
+        return dp[0][4];
+        
+        
+        // for(int[] a : dp) Arrays.fill(a, -1);
+        // int res = fn(0, 4, prices, dp);
+        // for(int[] a : dp) System.out.println(Arrays.toString(a));
+        // return res;
     }
     
     private int fn(int i, int buy, int[] arr, int[][] dp) {
