@@ -1,9 +1,22 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int[][] dp = new int[nums.length][nums.length+1];
-        for(int[] a : dp) Arrays.fill(a, -1);
-        int res = fn(nums.length-1, -1, nums, dp);
-        return res;
+        int[][] dp = new int[nums.length+1][nums.length+1];
+        
+        for(int i=1; i<=nums.length; i++) {
+            for(int j=0; j<=nums.length; j++) {
+                int take = 0;
+                if (j == 0 || nums[i-1] < nums[j-1]) take = 1 + dp[i-1][i];
+                int no = dp[i-1][j];
+                dp[i][j] = Math.max(take, no);
+            }
+        }
+        //for(int[] a : dp) System.out.println(Arrays.toString(a));
+        return dp[nums.length][0];
+        
+        // for(int[] a : dp) Arrays.fill(a, -1);
+        // int res = fn(nums.length-1, -1, nums, dp);
+        // for(int[] a : dp) System.out.println(Arrays.toString(a));
+        // return res;
     }
     
     private int fn(int i, int prev, int[] arr, int[][] dp) {
