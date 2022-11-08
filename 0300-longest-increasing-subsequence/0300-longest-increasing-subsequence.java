@@ -1,5 +1,24 @@
 class Solution {
+    // using 1D DP table algorithm
     public int lengthOfLIS(int[] nums) {
+        int[] dp  = new int[nums.length];
+        Arrays.fill(dp, 1);
+        int res = 1;
+        for(int i=1; i<nums.length; i++) {
+            for(int j=0; j<i; j++) {
+                if (nums[j] < nums[i]) {
+                    if (dp[i] <= 1+dp[j]) dp[i] = 1 + dp[j];
+                    res = Math.max(res, dp[i]);
+                }
+                //System.out.println(i+ " "+Arrays.toString(dp)); 
+            }
+        }
+        //System.out.println(Arrays.toString(dp));
+        return res;
+    }
+    
+    // using 2d DP algorithm
+    public int COMMENTEDlengthOfLIS(int[] nums) {
         int[][] dp = new int[nums.length+1][nums.length+1];
         
         for(int i=1; i<=nums.length; i++) {
@@ -10,7 +29,7 @@ class Solution {
                 dp[i][j] = Math.max(take, no);
             }
         }
-        //for(int[] a : dp) System.out.println(Arrays.toString(a));
+        for(int[] a : dp) System.out.println(Arrays.toString(a));
         return dp[nums.length][0];
         
         // for(int[] a : dp) Arrays.fill(a, -1);
@@ -19,6 +38,7 @@ class Solution {
         // return res;
     }
     
+    // using recursion and DP table
     private int fn(int i, int prev, int[] arr, int[][] dp) {
         if (i < 0) return 0;
         
