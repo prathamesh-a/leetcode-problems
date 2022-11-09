@@ -1,9 +1,25 @@
 class Solution {
     public int jump(int[] nums) {
         int[] dp = new int[nums.length];
-        Arrays.fill(dp, -1);
-        int res = fn(0, nums, dp);
-        return res;
+        
+        for(int i=nums.length-2; i>=0; i--) {
+            if (nums[i] == 0) {dp[i] = Integer.MAX_VALUE;continue;}
+            int min = Integer.MAX_VALUE;
+            for(int x=1; x<=nums[i]; x++) {
+                int curr = Integer.MAX_VALUE;
+                if (i+x < nums.length) curr = dp[i+x];
+                min = Math.min(min, curr);
+            }
+            if (min != Integer.MAX_VALUE) dp[i] = 1+min;
+            else dp[i] = min;
+        }
+        //System.out.println(Arrays.toString(dp));
+        return dp[0];
+        
+        // Arrays.fill(dp, -1);
+        // int res = fn(0, nums, dp);
+        // System.out.println(Arrays.toString(dp));
+        // return res;
     }
     
     private int fn(int i, int[] arr, int[] dp) {
